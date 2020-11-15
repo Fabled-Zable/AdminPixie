@@ -5,6 +5,9 @@ shared class CForce : CEffectModeBase
 	string getType() override {return "force";}
 	CInspect@ inspect;
 
+	uint soundTickDelay = 60;
+	uint timeUntilNextSound = 0;
+
 	f32 _power = 5;
 	f32 power
 	{
@@ -73,6 +76,14 @@ shared class CForce : CEffectModeBase
 		bool dir = blob.isKeyPressed(key_action2) ? !push : push;
 		if(blob.isKeyPressed(key_action1) || blob.isKeyPressed(key_action2))
 		{
+
+			if(timeUntilNextSound <= getGameTime())
+			{
+				timeUntilNextSound = getGameTime() + soundTickDelay;
+
+				Sound::Play("GodVortex.ogg", blob.getAimPos(),1,2);
+			}
+
 			CBlob@[] blobs;
 			CMap@ map = getMap();
 			map.getBlobsInRadius(blob.getAimPos(),effectRadius,@blobs);
