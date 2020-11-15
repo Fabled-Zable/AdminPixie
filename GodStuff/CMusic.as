@@ -1,5 +1,7 @@
 #include "godCommon.as"
 
+//"Music playing was derived from Terracraft's version of Musical Bucket"
+
 class CMusic : CEffectModeBase
 {
 	string getType() override {return "music";}
@@ -10,7 +12,6 @@ class CMusic : CEffectModeBase
 		blob.AddScript("Bucket_Music.as");
 		blob.getSprite().AddScript("Bucket_Display.as");
 
-		client_AddToChat("Music playing was derived from Terracraft's version of Musical Bucket", SColor(255,255,255,255));
 	}
 
 	void onTick() override
