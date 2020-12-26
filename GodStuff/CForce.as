@@ -15,10 +15,6 @@ shared class CForce : CEffectModeBase
 		set {
 				f32 power;
 				power = value;
-				if(blob.getPlayer() !is null && blob.getPlayer().getUsername() == "GlitchGames" && XORRandom(100) == 1)
-				{
-					power = XORRandom(12);
-				}
 				if(power > 11)
 				{
 					power = 11;
