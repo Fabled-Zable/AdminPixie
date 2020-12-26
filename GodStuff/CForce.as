@@ -28,6 +28,7 @@ shared class CForce : CEffectModeBase
 				blob.SendCommand(blob.getCommandID("Ppower"),params);
 			}
 	}
+	f32 barPosition = 5;
 	bool _push = false;
 	bool push
 	{
@@ -212,11 +213,17 @@ shared class CForce : CEffectModeBase
 
 		CEffectModeBase::processCommand(cmd, @params);
 	}
-
+	f32 animateScale = 2;
 	void render(CSprite@ sprite, f32 scale) override
     {
 		if(getLocalPlayer() is blob.getPlayer())
 		{
+			if(barPosition != power){
+
+				f32 scaler = Maths::Max(animateScale, animateScale * (Maths::Abs(power - barPosition)));
+				barPosition += barPosition > power ? -getRenderSmoothDeltaTime() * scaler : getRenderSmoothDeltaTime() * scaler;
+			}
+
 			int width = 93 * 2;
 			int height = 88;
 			int teamNum = blob.getTeamNum();
@@ -227,7 +234,7 @@ shared class CForce : CEffectModeBase
 			//draw powerbar before maingui because yeah
 			GUI::DrawIcon("pixle.png",0, Vec2f(1,1), Vec2f(22,69) * 2 + mainPos * scale,44,11, SColor(255,212,168,129));
 
-			GUI::DrawIcon("pixle.png",0, Vec2f(1,1), Vec2f(22,69) * 2 + mainPos * scale, (power/11) * 44,11, SColor(255,132,212,136));
+			GUI::DrawIcon("pixle.png",0, Vec2f(1,1), Vec2f(22,69) * 2 + mainPos * scale, (barPosition/11) * 44,11, SColor(255,132,212,136));
 
 
 			GUI::DrawIcon("TelekinesisGUI.png",0, Vec2f(width,height), mainPos, scale, teamNum);
