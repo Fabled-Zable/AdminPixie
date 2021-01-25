@@ -33,15 +33,5 @@ void onRender(CSprite@ this)
         Vec2f checkbox2 = Vec2f(57,26) * scale;
 
         Vec2f mainPos = Vec2f(getScreenWidth() - width * scale - 20, 20);
-
-        if(!blob.get_bool("noclip"))
-        {
-            GUI::DrawIcon("CheckBoxUnchecked.png",0, Vec2f(11,11),mainPos + checkbox1*2,scale);
-        }
-        if(!blob.get_bool("gravity"))
-        {
-            GUI::DrawIcon("CheckBoxUnchecked.png",0, Vec2f(11,11), mainPos + checkbox2*2,scale);
-        }
-        
     }
 }
