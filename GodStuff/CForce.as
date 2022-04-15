@@ -232,9 +232,10 @@ shared class CForce : CEffectModeBase
 			Vec2f mainPos = Vec2f(getScreenWidth() - width * scale - 20, 20  + (blob.getConfig() == "pixie" ? 88 * scale : 0));
 
 			//draw powerbar before maingui because yeah
+			SColor color = power == 11 ? SColor(255,199,99,93) : SColor(255,132,212,136);
 			GUI::DrawIcon("pixle.png",0, Vec2f(1,1), Vec2f(22,69) * 2 + mainPos * scale,44,11, SColor(255,212,168,129));
 
-			GUI::DrawIcon("pixle.png",0, Vec2f(1,1), Vec2f(22,69) * 2 + mainPos * scale, (barPosition/11) * 44,11, SColor(255,132,212,136));
+			GUI::DrawIcon("pixle.png",0, Vec2f(1,1), Vec2f(22,69) * 2 + mainPos * scale, (barPosition/11) * 44,11, color);
 
 
 			GUI::DrawIcon("TelekinesisGUI.png",0, Vec2f(width,height), mainPos, scale, teamNum);
